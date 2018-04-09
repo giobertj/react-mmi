@@ -7,61 +7,79 @@ import React from 'react';
 
 // On importe ici les composants qu'on veut afficher
 import Machine from '../../components/Machine.js';
+import Header from '../../components/Header.js';
+import Footer from '../../components/Footer.js';
+import '../../css/styles.css';
 // On peut aussi importer du CSS de la meme facon.
-import css from '../../css/style.css';
-
 
 class App extends React.Component {
   constructor(props) {
     super(props);
+
+    this.handleStatusChange = this.handleStatusChange.bind(this);
+
     this.state = {
       machines: [
         {
-          key: 0,
-          name: "Machine 1 définie dans le state",
+          id: 0,
+          name: "Machine à café",
           isActive: true
         },
         {
-          key: 1,
-          name: "Machine 2 définie dans le state",
+          id: 1,
+          name: "Machine à thé",
           isActive: false
         },
         {
-          key: 2,
-          name: "Machine 3 définie dans le state",
+          id: 2,
+          name: "Machine à frappucino",
           isActive: true
-        }, 
+        },
+        {
+          id: 3,
+          name: "Machine à citron",
+          isActive: true
+        }
       ]
     };
-    
-  console.log(this.state.machines);
-  
   }
-  
+
+  // Méthode pour activer une machine
+  handleStatusChange(key) {
+    // 1. On copie le state existant
+    const machines = { ...this.state.machines };
+    // 2. On modifie le status de CETTE machine
+    machines[key].isActive = true;
+    // Pour vérifier la nouvelle collection dans la console :
+    console.log({ machines });
+
+    // 3. On applique cette nouvelle collection au state
+    this.setState({ machines });
+  }
+
   render() {
     return (
-      <div>
-        <header/>
-        //appel avec une boucle
-        {
-          this.state.machines.map(machine =>
-            //console.log(machine.name)
-            <Machine  name={machine.name}
-                      key={machine.key}
-                      isActive={machine.isActive}/>
-          )
-        }
-        //appel manuel
-          <Machine name={this.state.machines[0].name} 
-              isActive={this.state.machines[0].isActive}/>
-          <Machine name={this.state.machines[1].name} 
-                isActive={this.state.machines[1].isActive}/>
-          <Machine name={this.state.machines[2].name} 
-               isActive={this.state.machines[2].isActive}/>
-        
-        <footer/>
+      <div className="main">
+        <Header/>
+          {/*Conteneur de notre liste*/}
+          <div className="machines-list">
+            {/*Boucle sur notre collection de machines*/}
+            {
+              Object
+                .keys(this.state.machines)
+                .map(key =>
+                // Le composant Machine s'affichera autant de fois
+                // qu'il y a d'objets dans la collection.
+                <Machine name={this.state.machines[key].name}
+                         key={this.state.machines[key].id}
+                         index={this.state.machines[key].id}
+                         handleStatusChange={this.handleStatusChange}
+                         isActive={this.state.machines[key].isActive}/>
+              )}
+          </div>
+        <Footer/>
       </div>
-    )
+    );
   }
 }
 
