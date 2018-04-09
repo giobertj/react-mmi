@@ -21,7 +21,7 @@ class Machine extends React.Component {
           {this.props.name}
           {/* On appelle handleClick avec (e) pour pouvoir accéder à this*/}
           <button onClick={(e) => this.onToggleClick(e)} type="button" className="btn">
-            Activer
+            {this.props.isActive ? "Désactiver" : "Activer"}
           </button>
         </div>
       )

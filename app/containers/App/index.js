@@ -33,7 +33,7 @@ class App extends React.Component {
         {
           id: 2,
           name: "Machine à frappucino",
-          isActive: true
+          isActive: false
         },
         {
           id: 3,
@@ -49,12 +49,15 @@ class App extends React.Component {
     // 1. On copie le state existant
     const machines = { ...this.state.machines };
     // 2. On modifie le status de CETTE machine
-    machines[key].isActive = true;
+    console.log(machines[key].isActive);
+    
+    machines[key].isActive = !machines[key].isActive;
     // Pour vérifier la nouvelle collection dans la console :
-    console.log({ machines });
+    console.log(machines[key].isActive);
 
     // 3. On applique cette nouvelle collection au state
     this.setState({ machines });
+    
   }
 
   render() {
