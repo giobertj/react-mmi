@@ -4,6 +4,8 @@
  *
  */
 import React from 'react';
+import Toggle from 'react-toggle';
+import "react-toggle/style.css" // for ES6 modules
 
 class Machine extends React.Component {
   // Méthode lancée au clic sur le bouton "Toggle"
@@ -19,10 +21,11 @@ class Machine extends React.Component {
         <div
         className= { this.props.isActive ? "machine active" : "machine" }> {/* Si isActive passée en props est à true, ajouter la classe "active" */}
           {this.props.name}
-          {/* On appelle handleClick avec (e) pour pouvoir accéder à this*/}
-          <button onClick={(e) => this.onToggleClick(e)} type="button" className="btn">
-            {this.props.isActive ? "Désactiver" : "Activer"}
-          </button>
+          {/* On appelle onToggleClick avec (e) pour pouvoir accéder à this*/}
+          <Toggle
+              checked={this.props.isActive}
+              onChange={(e) => this.onToggleClick(e)}
+          />
         </div>
       )
   }
