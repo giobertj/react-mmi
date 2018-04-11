@@ -55,12 +55,12 @@ https://reactjs.org/docs/lifting-state-up.html
 https://reactjs.org/docs/faq-functions.html
 
 ### Utiliser un composant externe
-- [ ] Charger un composant externe avec npm : un toggle : https://www.npmjs.com/package/react-toggle
+- [x] Charger un composant externe avec npm : un toggle : https://www.npmjs.com/package/react-toggle
 Ce composant s'ajoute en ligne de commande au projet, puis s'importe comme on importe nos propre composants.
-- [ ] Remplacer le bouton activer / désactiver par ce composant.
+- [x] Remplacer le bouton activer / désactiver par ce composant.
 
 ### Ajouter une machine grâce à un formulaire
-- [ ] En haut de la liste, ajouter un formulaire pour créer une machine avec : un nom ( input text ), un status ( select ), et un bouton 'Ajouter'.
+- [ ] En haut de la liste, ajouter un formulaire pour créer une machine avec : un nom ( input text ), un status ( select ), et un bouton 'Ajouter'. 
 - [ ] Lier le formulaire à une fonction qui rajoutera une machine au state de l'application.
 
 ### Afficher des compteurs 

@@ -8,11 +8,12 @@ import GoogleMapReact from 'google-map-react';
 
 // On importe ici les composants qu'on veut afficher
 import Machine from '../../components/Machine.js';
+import AddMachine from '../../components/AddMachine.js';
 import Header from '../../components/Header.js';
 import Footer from '../../components/Footer.js';
 import '../../css/styles.css';
 // On peut aussi importer du CSS de la meme facon.
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+// const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 class App extends React.Component {
   constructor(props) {
@@ -63,11 +64,20 @@ class App extends React.Component {
     // 3. On applique cette nouvelle collection au state
     this.setState({ machines });
   }
+  
+  // Méthode ajout machine au formulaire
+  addMachineToState(machine) {
+    machine.preventDefault();
+    console.log("addMachineToState");
+    console.log(machine);
+  }
 
   render() {
     return (
       <div className="main">
         <Header/>
+        <AddMachine addMachineToState={this.addMachineToState
+        }/>
           {/*Conteneur de notre liste*/}
           <div className="machines-list">
             {/*Boucle sur notre collection de machines*/}
@@ -103,3 +113,6 @@ class App extends React.Component {
 }
 
 export default App;
+
+
+// Si tu enlève la ligne 7 et le la div de la ligne 86 à 97 tout fonctionne (mais on en a besoin pour la carte maps sauf que jsp comment ca fonctionne et jsp pourquoi ca fait buguer). Tout est à jour et notament le README avec les petites croix, pour l'ajout de machine via le formulaire j'ai commencé un truc qu'il faut utiliser c'est AddMachine, il me manque juste le bouton Ajouter et le lien.  
