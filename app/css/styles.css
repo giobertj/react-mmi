@@ -27,6 +27,12 @@
   font-weight: bold;
 }
 
+/* Counter */
+.counter {
+  text-align: center;
+  font-size: 1.4em;
+}
+
 /* Machines */
 .machine {
   border-bottom: 1px solid #fdfdfd;
@@ -47,19 +53,29 @@
 
 .btn {
   background: #2196f3;
-  color: white;
-  border-radius: 20px;
-  padding: 5px 10px;
-  margin-left: 25px;
-  font-size: 14px;
+  color: #fff;
+  border-radius: 1em;
+  padding: .5em 1em;
+  margin-left: 1em;
 }
 
 .btn:hover {
-  background-color: #f44336;
+  background-color: #1e88e5;
   cursor: pointer;
 }
 
-.map-container {
-  height: 300px;
-  width: 100%;
+/* Formulaire d'ajout */
+.add-machine-form {
+  background-color: #f3f3f3;
+  padding: 30px;
+  text-align: center;
+  margin: 20px auto;
+  font-size: 1.4em;
+}
+
+.add-machine-form input,
+.add-machine-form select {
+  background-color: #eaeaea;
+  padding: 4px 6px;
+  margin-right: 10px;
 }

@@ -45,37 +45,60 @@ https://reactjs.org/docs/state-and-lifecycle.html
 - [x] Ajouter un bouton par Machine pour l'activer / désactiver
 - [x] Écouter l'évènement clic sur ce bouton. Au clic sur ce bouton, lancer une fonction, définie dans ce même composant. https://reactjs.org/docs/handling-events.html
 
-### Event : appliquer une faire remonter un fonction au composant parent
+### Event : faire remonter un changement de state au composant parent
 Pour profiter partout de la modification créée par cette action, on veut aller modifier le state du composant parent. Pour cela :
-- [x] Définir un fonction dans le composant parent
+- [x] Créer une fonction de modification du state dans le composant parent
 - [x] Passer cette fonction en props au composant
-- [x] Appeler cette fonction dans le composant au moment du clic
+- [x] Appeler cette fonction dans le composant au clic
 - [x] Faire inverser l'état actif / inactif d'une machine, grâce à un identifiant de la machine à modifier qu'on aura récupéré.
+- [x] Afficher un texte adapté dans le bouton : "Activer" si la machine est inactive, "Désactiver" si la machine est active.
 https://reactjs.org/docs/lifting-state-up.html
 https://reactjs.org/docs/faq-functions.html
 
 ### Utiliser un composant externe
+Notre bouton fonctionne, on peut maintenant travailler la forme. Étant donné qu'il sert à activer ou désactiver, c'est un bon cas d'utilisation d'un toggle. On peut utiliser un toggle existant sous forme de composant externe.
 - [x] Charger un composant externe avec npm : un toggle : https://www.npmjs.com/package/react-toggle
-Ce composant s'ajoute en ligne de commande au projet, puis s'importe comme on importe nos propre composants.
-- [x] Remplacer le bouton activer / désactiver par ce composant.
+Ce composant s'ajoute en ligne de commande au projet, puis s'importe comme on importe nos propre composants. Voir la doc http://aaronshaf.github.io/react-toggle/.
+- [x] Câbler la fonction de modification du state à l'évènement du composant toggle. 
+- [x] Remplacer le bouton activer/désactiver par ce composant.
 
-### Ajouter une machine grâce à un formulaire
-- [ ] En haut de la liste, ajouter un formulaire pour créer une machine avec : un nom ( input text ), un status ( select ), et un bouton 'Ajouter'. 
-- [ ] Lier le formulaire à une fonction qui rajoutera une machine au state de l'application.
-
-### Afficher des compteurs 
+### 🚨 Afficher des compteurs 
+On veut afficher le nombre de machines actives et le total pour avoir une meilleure vision d'ensemble de la liste.
+- [x] Calculer et afficher le nombre de machines active et le nombre total de machines dans App. Voir https://github.com/Romainpetit/react-mmi/commit/c3f932454321ffd281bd49c67a0938086347e42e
 - [ ] Afficher le nombre total de machines en bas de la liste.
 - [ ] Afficher le nombre de machines active et le nombre total de machines dans le composant Header.
 
-### Naviguer sur une page produit
-On a besoin de voir le détail de la machine, et donc d'avoir une page propre à chaque machine. 
+Le rendu final doit ressembler à ça : ![image](https://user-images.githubusercontent.com/632197/38746865-1eca827c-3f49-11e8-9ad9-10fec9f7ae11.png)
+
+
+### 🚨 Ajouter une machine grâce à un formulaire
+- [x] En haut de la liste, ajouter un formulaire pour créer une machine avec : un nom ( input text ), un status ( select ), et un bouton 'Ajouter'.
+- [ ] À l'envoi du formulaire, appeler la fonction `addMachineToState()` qui sera définie dans App.
+- [ ] Écrire la fonction `addMachineToState()` qui rajoutera une machine au state de l'application : comme `handleStatusChange()` elle modifiera une copie du state pour ensuite l'appliquer avec `setState()`.
+- [ ] Faire que la fonction `addMachineToState` ajoute également un `id` unique à chaque nouvelle machine.
+
+### 🚨 Supprimer une machine avec un bouton
+De la même façon que pour le formulaire d'ajout, un bouton "supprimer" permettra de supprimer une machine de la liste. 
+- [ ] À chaque machine rajouter un bouton 'Supprimer'.
+- [ ] Au clic sur ce bouton, appeler une fonction qui supprimera cette machine du state de l'application. On peut ici passer l'id de la machine cliquée pour identifier la machine à supprimer, comme on le fait avec `handleStatusChange`. 
+
+Le résultat doit ressembler à ça : 
+![image](https://user-images.githubusercontent.com/632197/38748365-21b63ed6-3f4e-11e8-9284-13ab24fda817.png)
+
+### 🚨 Naviguer sur une page produit
+On a besoin de voir le détail de la machine, et donc d'avoir une page propre à chaque machine. Un routeur nous permet d'afficher du contenu différent en fonction de l'url visitée.
 - [ ] Router : utiliser React Router pour naviguer sur différentes pages :
 https://github.com/ReactTraining/react-router
+- [ ] À la racine du site, http://localhost:3000/, afficher l'app complète
+- [ ] À l'addresse http://localhost:3000/machine/<id> afficher le détail de la machine. http://localhost:3000/machine/1 affichera donc le détail de la machine qui a pour `id` 1.
+- [ ] Rajouter un lien sur chaque machine de la liste vers sa page détail.
 
-### Localiser les machines
+### 🚨 Localiser les machines (bonus)
+Notre application liste des machines du monde entier. Sur la page de détail d'une machine, on veut pouvoir voir sur une carte sa localisation.
 - [ ] Renseigner pour chaque machine des coordonées dans le state ( lat et lng )
-- [ ] Ajouter une carte Google Maps sur la page produit : https://github.com/google-map-react/google-map-react
-Pour communiquer avec les APIs de Google, on a besoin d'une clé API. Vous pouvez utiliser celle ci : `AIzaSyBU_IEeDtk0fIKfm18yj8bD6DDaJ0N-3e4`
+- [ ] Ajouter une carte Google Maps sur la page de détail. Pour cela, utiliser ce composant externe : https://github.com/google-map-react/google-map-react
+- [ ] Ajouter un marqueur sur la carte pour présenter la position exacte de la machine.
+Pour communiquer avec les APIs de Google, on a besoin d'une clé API. Pour cet exercice, vous pouvez utiliser celle ci : `AIzaSyBU_IEeDtk0fIKfm18yj8bD6DDaJ0N-3e4`
 
 ----------
 
